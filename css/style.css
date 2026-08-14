@@ -318,13 +318,14 @@ input {
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 112px;
+  width: 116px;
   background: rgba(0, 0, 0, 0.2);
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: 999px;
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: background 0.2s ease;
+  overflow: visible;
 }
 
 .volume-pill:hover {
@@ -341,6 +342,9 @@ input {
   -webkit-appearance: none;
   appearance: none;
   flex: 1;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
   height: 4px;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.2);
@@ -351,8 +355,29 @@ input {
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 0;
-  height: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .buy-coffee-btn {

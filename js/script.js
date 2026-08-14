@@ -209,10 +209,18 @@
 
   /* ============ Volume ============ */
 
+  function updateVolumeUI() {
+    var pct = Math.round(state.volume * 100);
+    volumeSlider.value = pct;
+    volumeSlider.style.background =
+      "linear-gradient(to right, #ffffff " + pct + "%, rgba(255,255,255,0.2) " + pct + "%)";
+  }
+
   volumeSlider.addEventListener("input", function () {
     state.volume = parseFloat(volumeSlider.value) / 100;
     audio.volume = state.volume;
     state.muted = state.volume === 0;
+    updateVolumeUI();
   });
 
   muteBtn.addEventListener("click", function () {
@@ -220,12 +228,12 @@
       state.muted = false;
       state.volume = state.volume === 0 ? 1 : state.volume;
       audio.volume = state.volume;
-      volumeSlider.value = state.volume * 100;
     } else {
       state.muted = true;
       audio.volume = 0;
-      volumeSlider.value = 0;
+      state.volume = 0;
     }
+    updateVolumeUI();
   });
 
   /* ============ Backgrounds ============ */
@@ -609,6 +617,7 @@
   setBgIndex(0);
   loadTrack();
   updateProgressUI();
+  updateVolumeUI();
   manageWakeLock();
 
   setInterval(manageWakeLock, 30000);
